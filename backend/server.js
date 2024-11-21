@@ -7,6 +7,7 @@ import userRoutes from "./routes/userRoute.js";
 import postRoutes from "./routes/postRoute.js";
 import notificationsRoutes from "./routes/notificationRoute.js"
 import {v2 as cloudinary} from "cloudinary";
+import cors from 'cors';
 
 dotenv.config();
 cloudinary.config({
@@ -16,7 +17,10 @@ cloudinary.config({
 })
 const app = express();
 const PORT = process.env.PORT || 5000;
-
+var corsOptions = {
+    origin: "http://localhost:3000"
+  };
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended : true})) // to parse form data
 app.use(cookieParser());
